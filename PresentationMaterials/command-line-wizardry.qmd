@@ -1,0 +1,333 @@
+---
+title: "Command Line Wizardry 🧙🏾‍♂"
+subtitle: "Spring 2023 Data Bytes Series"
+author: "Pete Lawson, PhD"
+format: 
+  revealjs:
+    theme: default
+    code-copy: true
+    code-line-numbers: false
+editor: source
+---
+
+## Speaker
+
+Pete Lawson @petethelib
+
+Data and Visualization Librarian, with a background in ...
+
+## Introduction
+
+
+## {auto-animate=true}
+
+This talk is not exhaustive.
+
+It's meant to give you a brief introduction to the command line, and inspire you with some of the really powerful command line utilities,
+and convince you it's...
+
+::: {style="margin-top: 0px;"}
+**magic!**
+:::
+
+## {auto-animate=true}
+
+::: {style="margin-right: 200px; font-size: 5em; color: purple;"}
+**magic!**
+:::
+
+![](https://media.tenor.com/WUVqyY-KBbAAAAAd/your-a-wizard-harry.gif)
+
+## Unix
+
+::: columns
+::: {.column width="50%"}
+When we are talking about the command line, we are really talking about the **Unix** command line.
+
+**Unix** is a family of computer operating systems, originally developed in 1969 at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others.
+:::
+
+::: {.column width="50%"}
+![<small>By Peter Hamer - Ken Thompson (sitting) and Dennis Ritchie at PDP-11, Uploaded by Magnus Manske, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=24512134</small>](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Ken_Thompson_(sitting)_and_Dennis_Ritchie_at_PDP-11_(2876612463).jpg/1280px-Ken_Thompson_(sitting)_and_Dennis_Ritchie_at_PDP-11_(2876612463).jpg){width="500"}
+:::
+:::
+
+## Why the **Unix** command line?
+
+. . .
+
+<br> **Unix is universal!**
+
+. . .
+
+<br> Unix was selected as the basis for a standard system interface, including standard specifications for command-line utilities.
+
+. . .
+
+<br> This standard is the **Portable Operating System Interface (POSIX)** standard, and it's the reason why the command line works the same on almost all computers\*.
+
+. . .
+
+<br> \* Windows is the exception.
+
+# `pwd`
+
+**p**rint the **w**orking **d**irectory
+
+# `ls`
+
+**l**i**s**t the contents of a directory
+
+```{.bash}
+ls
+```
+
+# `cd`
+
+**c**hange **d**irectory
+
+<br>
+`cd ~`<br>change directory to home
+
+<br>
+`cd ..`<br>go up one directory, for example from `/home/username/Documents` to `/home/username`
+
+# `curl`
+
+**c**lient for **url**
+
+. . .
+
+<br>
+`-O` : Write output to a file named the same as the remote file
+
+``` bash
+curl -O https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
+```
+
+# `unzip`
+
+open, or **un**-**zip** a .zip compressed file.
+
+. . .
+
+``` bash
+unzip shell-lesson-data.zip
+```
+
+# `cat` 
+ 
+Con**cat**enate: join together and print the contents of one file, one after another
+  
+. . . 
+
+<br>
+```{.bash}
+cat cubane.pdb
+```
+
+# `wc`
+
+**W**ord **c**ount: counts the number of lines, words, and characters in a file
+
+. . .
+
+<br>
+`wc -l` : only print line count
+<br>
+`wc -w` : only print word count
+<br>
+`wc -c` : only print character count
+
+# `*` wildcard
+
+the `*` wildcard expands to all possible matches.
+
+. . . 
+
+```{.bash}
+wc -l *.pdb
+```
+
+# `>` Output Redirection
+
+`>` sends the output of the previous command to a file
+
+. . .
+
+<br>
+```{.bash}
+wc -l *.pdb > lengths.txt
+```
+
+. . . 
+
+<br>
+
+::: {.callout-warning}
+If you use `>` to send output to an existing file, it will be **overwritten**. 
+
+Use `>>` to append to the end of an existing file instead.
+:::
+
+
+# `head` and `tail` 
+
+`head` prints the first 10 lines of each file provided to it.
+
+`tail` prints the last 10 lines of each file provided to it.
+
+. . . 
+
+<br>
+`head -n 3`<br>
+Print the first 3 lines of a file
+<br>
+
+. . .
+
+<br>
+```{.bash}
+head -n 6 lengths.txt
+```
+
+
+# `sort` 
+
+`sort`the contents of a file alphanumerically.
+
+. . . 
+
+<br>
+`sort -n`<br>
+Sort numerically
+
+. . .
+
+<br>
+`sort -nr`<br>
+Sort numerically in reverse order (descending)
+
+. . .
+
+```{.bash}
+sort -nr lengths.txt
+```
+
+# `|` Pipe
+
+The pipe `|` allows you to pass the results from one command to the next command.
+
+. . . 
+
+You can string together simple commands to create much more powerful actions.
+<br>
+
+. . .
+
+```{.bash}
+cat lengths.txt | head -n 6 | sort -nr
+```
+
+# `cut`
+Slice and dice your text by position, character, or field.
+
+. . .
+
+<br>
+`cut -d, -f 1`<br>
+Retrieve the first column of a comma-delimited (csv) file
+
+. . .
+
+<br>
+`cut -d" " -f 3`<br>
+Retrieve the third column of a space-delimited file
+
+# `less`
+
+`less` reads in a text-file on page at a time.
+
+`f` : go forward one page<br>
+`b` : go backward one page<br>
+`g` : go to beginning<br>
+`G` : go to end<br>
+`/` : search forward<br>
+`?` : search backward<br>
+`q` : quit less<br>
+
+# `sed`
+
+**s**tream **ed**itor, performs editing on a stream of text, line by line.
+
+. . .
+
+<br>
+`sed '10,100d'` deletes text in the range lines 10 to 100
+
+. . .
+
+<br>
+```{.bash}
+cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
+```
+<br>
+
+. . . 
+
+
+```{.bash}
+cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
+```
+
+. . .
+
+# `sed`
+
+**s**tream **ed**itor, performs editing on a stream of text.
+
+<br>
+
+`sed 's/apple/banana/g'` 
+finds all occurrences of the word `apple`, and replaces it with `banana`
+
+# `<` input redirection
+
+
+Some utilities (like `tr`) take a stream of text, not a file. In these cases, we use the input redirection (`<`) to send a stream into `tr`.
+
+# `tr`
+
+`tr`ansliterate, or search and replace characters.
+
+<br>
+
+`[:punct:]` Match all punctuation
+<br>
+`[:lower:]` Match all lowercase characters
+<br>
+`[:upper:]` Match all uppercase characters
+<br>
+`[:space:]` Match all spaces 
+<br>
+
+. . .
+
+<br>
+```{.bash}
+tr '[:upper:]' '[:lower:]' < little-zombies.txt > little-zombies-lower.txt
+```
+<br>
+
+. . . 
+
+
+```{.bash}
+tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt 
+```
+. . . 
+
+<br>
+```{.bash}
+ tr ' ' '\n' < little-zombies-clean.txt | sort | uniq -c | sort -nr > little-zombie-word-count.txt
+```
