@@ -606,11 +606,11 @@ Pete Lawson, PhD
 </div>
 <div class="fragment">
 <p><br></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> LittleWomen.txt <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'20653,21022d'</span> <span class="op">&gt;</span> little-women-no-footer.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> LittleWomen.txt <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'20662,21022d'</span> <span class="op">&gt;</span> little-women-no-footer.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> little-women-no-footer.txt <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'0,93d'</span> <span class="op">&gt;</span> little-women-no-footer-header.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> little-women-no-footer.txt <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'1,93d'</span> <span class="op">&gt;</span> little-women-no-footer-header.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -619,6 +619,10 @@ Pete Lawson, PhD
 <p><strong>s</strong>tream <strong>ed</strong>itor, performs editing on a stream of text.</p>
 <p><br></p>
 <p><code>sed 's/apple/banana/g'</code> finds all occurrences of the word <code>apple</code>, and replaces it with <code>banana</code></p>
+<div class="fragment">
+<p><br></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> little-women-no-footer-header.txt <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/women/zombies/g'</span> <span class="op">&gt;</span> little-zombies.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 <section id="input-redirection" class="title-slide slide level1 center">
@@ -633,15 +637,15 @@ Pete Lawson, PhD
 <p><code>[:punct:]</code> Match all punctuation <br> <code>[:lower:]</code> Match all lowercase characters <br> <code>[:upper:]</code> Match all uppercase characters <br> <code>[:space:]</code> Match all spaces <br></p>
 <div class="fragment">
 <p><br></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span> <span class="st">'[:upper:]'</span> <span class="st">'[:lower:]'</span> <span class="op">&lt;</span> little-zombies.txt <span class="op">&gt;</span> little-zombies-lower.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span> <span class="st">'[:upper:]'</span> <span class="st">'[:lower:]'</span> <span class="op">&lt;</span> little-zombies.txt <span class="op">&gt;</span> little-zombies-lower.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span> <span class="at">-d</span> <span class="st">'[:punct:]\r'</span> <span class="op">&lt;</span> little-zombies-lower.txt <span class="op">&gt;</span> little-zombies-clean.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span> <span class="at">-d</span> <span class="st">'[:punct:]\r'</span> <span class="op">&lt;</span> little-zombies-lower.txt <span class="op">&gt;</span> little-zombies-clean.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">tr</span> <span class="st">' '</span> <span class="st">'\n'</span> <span class="op">&lt;</span> little-zombies-clean.txt <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="op">&gt;</span> little-zombie-word-count.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">tr</span> <span class="st">' '</span> <span class="st">'\n'</span> <span class="op">&lt;</span> little-zombies-clean.txt <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="op">&gt;</span> little-zombie-word-count.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -652,7 +656,7 @@ Pete Lawson, PhD
 <p>In particular, we will use the <code>tr</code> flag <code>tr -s</code> (squeeze), to collapse multiple spaces down to one.</p>
 <div class="fragment">
 <p><br></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> lengths.txt <span class="fu">tr</span> <span class="at">-s</span> <span class="st">' '</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 6 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">" "</span> <span class="at">-f</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> lengths.txt <span class="fu">tr</span> <span class="at">-s</span> <span class="st">' '</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 6 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">" "</span> <span class="at">-f</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="command-line-vocabulary" class="slide level2">

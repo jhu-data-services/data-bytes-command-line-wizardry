@@ -250,7 +250,7 @@ head -n 6 lengths.txt | sort -nr | cut -d" " -f 3
 <br>
 
 ```{.bash}
-cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
+cat LittleWomen.txt | sed '20662,21022d' > little-women-no-footer.txt
 ```
 
 <br>
@@ -258,7 +258,7 @@ cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
 . . .
 
 ```{.bash}
-cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
+cat little-women-no-footer.txt | sed '1,93d' > little-women-no-footer-header.txt
 ```
 
 . . .
@@ -270,6 +270,13 @@ cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
 <br>
 
 `sed 's/apple/banana/g'` finds all occurrences of the word `apple`, and replaces it with `banana`
+
+. . . 
+
+<br>
+```{.bash}
+cat little-women-no-footer-header.txt | sed 's/women/zombies/g' > little-zombies.txt
+```
 
 # `<` input redirection
 
