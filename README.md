@@ -1,5 +1,10 @@
-# Workshop Name
-[description]
+# Data Bytes - Command Line Wizardry
+
+While specialized software exists for data cleaning and analysis, you may not always have access to it, or you may have more files or data records than the software supports.
+
+The Unix command line offers a universal tool that works on laptops, workstations, and high-performance-computers alike.
+
+Take your command line skills to the next level! Learn commands for data cleaning that can run on millions of records in matter of seconds. Learn how you can combine commands into powerful workflows using pipes and how to apply those workflows automatically to many different files using loops.
 
 
 ## JHU Data Services   
@@ -17,17 +22,11 @@ Before the class, follow the [installation instructions to download all required
 
 
 ## Description of Files
-- Data: This folder contains raw data files to be used during hands-on activities in the workshop
-- In-ClassScripts: This folder contains code files you will need for the workshop:
-    - [file1]
-    - [file2]
-    - [file3]
-- PresentationMaterials: This folder contains PowerPoint slides and other presentation materials used in the workshop
-- Resources: This folder contains cheatsheets to assist you during the workshop and links to external sources for you to continue your learning
+PresentationMaterials: The slides for this workshop are available at [Command Line Wizardry Slides](bit.ly/command-line-wiz-slides)
 
 
 ## Post-Class Survey
-If you have taken the live webinar for this class, please take this survey: [link name](url)
+If you have taken the live webinar for this class, please take this survey: [Data Bytes Spring 2023 Survey](https://www.surveymonkey.com/r/data-bytes-spring-2023)
 
 
 ## License and Terms of Use
