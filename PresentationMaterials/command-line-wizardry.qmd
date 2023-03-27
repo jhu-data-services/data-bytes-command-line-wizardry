@@ -76,7 +76,7 @@ When we are talking about the command line, we are really talking about the **Un
 
 **l**i**s**t the contents of a directory
 
-``` bash
+```{.bash}
 ls
 ```
 
@@ -96,7 +96,7 @@ ls
 
 <br> `-O` : Write output to a file named the same as the remote file
 
-``` bash
+```{.bash}
 curl -O https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
 ```
 
@@ -106,19 +106,19 @@ open, or **un**-**zip** a .zip compressed file.
 
 . . .
 
-``` bash
+```{.bash}
 unzip shell-lesson-data.zip
 ```
 
 # `cat`
 
-Con**cat**enate: join together and print the contents of one file, one after another
+Con**cat**enate: join together and print the contents of files, one after another
 
 . . .
 
 <br>
 
-``` bash
+```{.bash}
 cat cubane.pdb
 ```
 
@@ -136,7 +136,7 @@ the `*` wildcard expands to all possible matches.
 
 . . .
 
-``` bash
+```{.bash}
 wc -l *.pdb
 ```
 
@@ -148,7 +148,7 @@ wc -l *.pdb
 
 <br>
 
-``` bash
+```{.bash}
 wc -l *.pdb > lengths.txt
 ```
 
@@ -176,13 +176,13 @@ Use `>>` to append to the end of an existing file instead.
 
 <br>
 
-``` bash
+```{.bash}
 head -n 6 lengths.txt
 ```
 
 # `sort`
 
-`sort`the contents of a file alphanumerically.
+`sort` the contents of a file alphanumerically.
 
 . . .
 
@@ -194,7 +194,7 @@ head -n 6 lengths.txt
 
 . . .
 
-``` bash
+```{.bash}
 sort -nr lengths.txt
 ```
 
@@ -208,7 +208,7 @@ You can string together simple commands to create much more powerful actions. <b
 
 . . .
 
-``` bash
+```{.bash}
 cat lengths.txt | head -n 6 | sort -nr
 ```
 
@@ -223,6 +223,13 @@ Slice and dice your text by position, character, or field.
 . . .
 
 <br> `cut -d" " -f 3`<br> Retrieve the third column of a space-delimited file
+
+. . .
+
+<br>
+```{.bash}
+head -n 6 lengths.txt | sort -nr | cut -d" " -f 3
+```
 
 # `less`
 
@@ -242,7 +249,7 @@ Slice and dice your text by position, character, or field.
 
 <br>
 
-``` bash
+```{.bash}
 cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
 ```
 
@@ -250,7 +257,7 @@ cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
 
 . . .
 
-``` bash
+```{.bash}
 cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
 ```
 
@@ -280,7 +287,7 @@ Some utilities (like `tr`) take a stream of text, not a file. In these cases, we
 
 <br>
 
-``` bash
+```{.bash}
 tr '[:upper:]' '[:lower:]' < little-zombies.txt > little-zombies-lower.txt
 ```
 
@@ -288,7 +295,7 @@ tr '[:upper:]' '[:lower:]' < little-zombies.txt > little-zombies-lower.txt
 
 . . .
 
-``` bash
+```{.bash}
 tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt 
 ```
 
@@ -296,6 +303,40 @@ tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt
 
 <br>
 
-``` bash
+```{.bash}
  tr ' ' '\n' < little-zombies-clean.txt | sort | uniq -c | sort -nr > little-zombie-word-count.txt
 ```
+
+# Back to `cut`
+
+We can combine `tr` and `cut` to solve the problem of a variable number of spaces. 
+
+In particular, we will use the `tr` flag `tr -s` (squeeze), to collapse multiple spaces down to one.
+
+. . .
+
+<br>
+```{.bash}
+< lengths.txt tr -s ' ' | head -n 6 | sort -nr | cut -d" " -f 2
+```
+
+## Command line vocabulary
+<small>
+`pwd`: Print working directory<br>
+`ls`: List directory<br>
+`cd`: Change directory<br>
+`unzip`: Unzip a file<br>
+`cat`: Display a file contents<br>
+`wc`: Count the lines, words, and characters in a file<br>
+`*`: Match multiple files<br>
+`>`: Redirect output to a file<br>
+`>>`: Append output to a file<br>
+`head`: Print the first lines of a file<br>
+`tail`: Print the last lines of a file<br>
+`sort`: Sort a file<br>
+`|`: Pipe commands together in sequence<br>
+`cut`: Slice text by byte, field, or index<br>
+`less`: View file page by page<br>
+`sed`: Stream editor - edit text line by line<br>
+`<`: Input redirect, send stream to stream utilities<br>
+`tr`: Transliterate, find and replace text in stream<br></small>
