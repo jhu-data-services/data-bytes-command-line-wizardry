@@ -18,11 +18,19 @@ As of March 2020, Data Services workshops are being held virtually on Zoom. [See
 
 
 ## Pre-Class Instructions
-Before the class, follow the [installation instructions to download all required software and tools for this workshop](link-to-github-installation-repo).
+If you would like to follow along during the session, make sure you have a terminal program installed.
 
+### Mac
+For Mac users, the `terminal` application, installed by default in MacOS, is the best way to follow along. For details on opening and using the application, follow this guide [opening the Terminal application on MacOS](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac)
+
+### Windows
+For Windows users, the fastest way to get a working `terminal` application is to install [Git for Windows](https://gitforwindows.org/). Git for Windows provides a terminal emulator called `Git BASH`. Use `Git BASH` to follow-along.
+
+### Linux
+For Linux users, you will have a working terminal emulator installed by default, although it will vary by Linux distribution.
 
 ## Description of Files
-PresentationMaterials: The slides for this workshop are available at [Command Line Wizardry Slides](https://bit.ly/command-line-wiz-slides)
+PresentationMaterials: The slides for this workshop are available at [Command Line Wizardry Slides](https://bit.ly/command-line-wiz-slides).
 
 
 ## Post-Class Survey
