@@ -10,33 +10,31 @@ format:
 editor: source
 ---
 
-## Speaker
+## Before we begin
 
-Pete Lawson @petethelib
+View the slides for today's session at: <br> [bit.ly/command-line-wiz-slides](https://bit.ly/command-line-wiz-slides)
 
-Data and Visualization Librarian, with a background in ...
+. . .
 
-## Introduction
+If you would like to follow along, make sure you have a terminal emulator installed. For instructions on how to do so, visit the workshop page instructions: <br> [Pre-Class Instructions](https://jhu-data-services.github.io/data-bytes-command-line-wizardry/#pre-class-instructions)
 
+##  {auto-animate="true"}
 
-## {auto-animate=true}
+This session is not exhaustive.
 
-This talk is not exhaustive.
-
-It's meant to give you a brief introduction to the command line, and inspire you with some of the really powerful command line utilities,
-and convince you it's...
+It's meant to give you a brief introduction to the command line, and inspire you with some of the really powerful command line utilities, and convince you it's...
 
 ::: {style="margin-top: 0px;"}
 **magic!**
 :::
 
-## {auto-animate=true}
+##  {auto-animate="true"}
 
 ::: {style="margin-right: 200px; font-size: 5em; color: purple;"}
 **magic!**
 :::
 
-![](https://media.tenor.com/WUVqyY-KBbAAAAAd/your-a-wizard-harry.gif)
+![](https://media.tenor.com/WUVqyY-KBbAAAAAd/your-a-wizard-harry.gif){width="350"}
 
 ## Unix
 
@@ -78,7 +76,7 @@ When we are talking about the command line, we are really talking about the **Un
 
 **l**i**s**t the contents of a directory
 
-```{.bash}
+``` bash
 ls
 ```
 
@@ -86,11 +84,9 @@ ls
 
 **c**hange **d**irectory
 
-<br>
-`cd ~`<br>change directory to home
+<br> `cd ~`<br>change directory to home
 
-<br>
-`cd ..`<br>go up one directory, for example from `/home/username/Documents` to `/home/username`
+<br> `cd ..`<br>go up one directory, for example from `/home/username/Documents` to `/home/username`
 
 # `curl`
 
@@ -98,8 +94,7 @@ ls
 
 . . .
 
-<br>
-`-O` : Write output to a file named the same as the remote file
+<br> `-O` : Write output to a file named the same as the remote file
 
 ``` bash
 curl -O https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
@@ -115,14 +110,15 @@ open, or **un**-**zip** a .zip compressed file.
 unzip shell-lesson-data.zip
 ```
 
-# `cat` 
- 
+# `cat`
+
 Con**cat**enate: join together and print the contents of one file, one after another
-  
-. . . 
+
+. . .
 
 <br>
-```{.bash}
+
+``` bash
 cat cubane.pdb
 ```
 
@@ -132,20 +128,15 @@ cat cubane.pdb
 
 . . .
 
-<br>
-`wc -l` : only print line count
-<br>
-`wc -w` : only print word count
-<br>
-`wc -c` : only print character count
+<br> `wc -l` : only print line count <br> `wc -w` : only print word count <br> `wc -c` : only print character count
 
 # `*` wildcard
 
 the `*` wildcard expands to all possible matches.
 
-. . . 
+. . .
 
-```{.bash}
+``` bash
 wc -l *.pdb
 ```
 
@@ -156,61 +147,54 @@ wc -l *.pdb
 . . .
 
 <br>
-```{.bash}
+
+``` bash
 wc -l *.pdb > lengths.txt
 ```
 
-. . . 
+. . .
 
 <br>
 
-::: {.callout-warning}
-If you use `>` to send output to an existing file, it will be **overwritten**. 
+::: callout-warning
+If you use `>` to send output to an existing file, it will be **overwritten**.
 
 Use `>>` to append to the end of an existing file instead.
 :::
 
-
-# `head` and `tail` 
+# `head` and `tail`
 
 `head` prints the first 10 lines of each file provided to it.
 
 `tail` prints the last 10 lines of each file provided to it.
 
-. . . 
+. . .
 
-<br>
-`head -n 3`<br>
-Print the first 3 lines of a file
-<br>
+<br> `head -n 3`<br> Print the first 3 lines of a file <br>
 
 . . .
 
 <br>
-```{.bash}
+
+``` bash
 head -n 6 lengths.txt
 ```
 
-
-# `sort` 
+# `sort`
 
 `sort`the contents of a file alphanumerically.
 
-. . . 
+. . .
 
-<br>
-`sort -n`<br>
-Sort numerically
+<br> `sort -n`<br> Sort numerically
 
 . . .
 
-<br>
-`sort -nr`<br>
-Sort numerically in reverse order (descending)
+<br> `sort -nr`<br> Sort numerically in reverse order (descending)
 
 . . .
 
-```{.bash}
+``` bash
 sort -nr lengths.txt
 ```
 
@@ -218,43 +202,33 @@ sort -nr lengths.txt
 
 The pipe `|` allows you to pass the results from one command to the next command.
 
-. . . 
+. . .
 
-You can string together simple commands to create much more powerful actions.
-<br>
+You can string together simple commands to create much more powerful actions. <br>
 
 . . .
 
-```{.bash}
+``` bash
 cat lengths.txt | head -n 6 | sort -nr
 ```
 
 # `cut`
+
 Slice and dice your text by position, character, or field.
 
 . . .
 
-<br>
-`cut -d, -f 1`<br>
-Retrieve the first column of a comma-delimited (csv) file
+<br> `cut -d, -f 1`<br> Retrieve the first column of a comma-delimited (csv) file
 
 . . .
 
-<br>
-`cut -d" " -f 3`<br>
-Retrieve the third column of a space-delimited file
+<br> `cut -d" " -f 3`<br> Retrieve the third column of a space-delimited file
 
 # `less`
 
 `less` reads in a text-file on page at a time.
 
-`f` : go forward one page<br>
-`b` : go backward one page<br>
-`g` : go to beginning<br>
-`G` : go to end<br>
-`/` : search forward<br>
-`?` : search backward<br>
-`q` : quit less<br>
+`f` : go forward one page<br> `b` : go backward one page<br> `g` : go to beginning<br> `G` : go to end<br> `/` : search forward<br> `?` : search backward<br> `q` : quit less<br>
 
 # `sed`
 
@@ -262,21 +236,21 @@ Retrieve the third column of a space-delimited file
 
 . . .
 
-<br>
-`sed '10,100d'` deletes text in the range lines 10 to 100
+<br> `sed '10,100d'` deletes text in the range lines 10 to 100
 
 . . .
 
 <br>
-```{.bash}
+
+``` bash
 cat LittleWomen.txt | sed '20653,21022d' > little-women-no-footer.txt
 ```
+
 <br>
 
-. . . 
+. . .
 
-
-```{.bash}
+``` bash
 cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
 ```
 
@@ -288,11 +262,9 @@ cat little-women-no-footer.txt | sed '0,93d' > little-women-no-footer-header.txt
 
 <br>
 
-`sed 's/apple/banana/g'` 
-finds all occurrences of the word `apple`, and replaces it with `banana`
+`sed 's/apple/banana/g'` finds all occurrences of the word `apple`, and replaces it with `banana`
 
 # `<` input redirection
-
 
 Some utilities (like `tr`) take a stream of text, not a file. In these cases, we use the input redirection (`<`) to send a stream into `tr`.
 
@@ -302,32 +274,28 @@ Some utilities (like `tr`) take a stream of text, not a file. In these cases, we
 
 <br>
 
-`[:punct:]` Match all punctuation
-<br>
-`[:lower:]` Match all lowercase characters
-<br>
-`[:upper:]` Match all uppercase characters
-<br>
-`[:space:]` Match all spaces 
-<br>
+`[:punct:]` Match all punctuation <br> `[:lower:]` Match all lowercase characters <br> `[:upper:]` Match all uppercase characters <br> `[:space:]` Match all spaces <br>
 
 . . .
 
 <br>
-```{.bash}
+
+``` bash
 tr '[:upper:]' '[:lower:]' < little-zombies.txt > little-zombies-lower.txt
 ```
+
 <br>
 
-. . . 
+. . .
 
-
-```{.bash}
+``` bash
 tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt 
 ```
-. . . 
+
+. . .
 
 <br>
-```{.bash}
+
+``` bash
  tr ' ' '\n' < little-zombies-clean.txt | sort | uniq -c | sort -nr > little-zombie-word-count.txt
 ```
