@@ -22,7 +22,7 @@ Before the class, follow the [installation instructions to download all required
 
 
 ## Description of Files
-PresentationMaterials: The slides for this workshop are available at [Command Line Wizardry Slides](bit.ly/command-line-wiz-slides)
+PresentationMaterials: The slides for this workshop are available at [Command Line Wizardry Slides](https://bit.ly/command-line-wiz-slides)
 
 
 ## Post-Class Survey
@@ -38,5 +38,5 @@ The images, external resources, and cheatsheets linked in this repository may ha
 
 
 ## Citation
-Please cite this material as:    
-Johns Hopkins University Data Services. [Date of workshop]. [Workshop title]. [URL] 
+Please cite this material as:   
+Johns Hopkins University Data Services. March 27th, 2023. Command Line Wizardry. [Data Bytes - Command Line Wizardry](https://bit.ly/command-line-wiz)
