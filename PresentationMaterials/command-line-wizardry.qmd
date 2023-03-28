@@ -263,13 +263,28 @@ cat little-women-no-footer.txt | sed '1,93d' > little-women-no-footer-header.txt
 
 . . .
 
-# `sed`
+# Counting 🧟
 
-**s**tream **ed**itor, performs editing on a stream of text.
+::: {.callout-tip icon=false} 
+
+## Exercise 
+
+We have been hired to a truly atrocious publisher to adapt and market the public domain book *Little Women* as a zombies remake. They would like us to confirm the word counts of each word in the text to ensure zombies appear frequently enough that they can justify repackaging it as a new book.
+
+Using the text of *Little Women*, use `sed` to replace any instance of `women` with `zombies` to make our new *Little Zombies* text with a minimum of effort. 
+
+Then confirm the word counts of all unique words used in the text.
+:::
+
+# `sed` search and replace
+
+We have previously used `sed` (**s**tream **ed**itor), to delete a block of text. This is one of many `sed` functions. We can also use `sed` to search and replace text. For our 🧟 exercise, we are going to replace any occurrence of women with zombies.
 
 <br>
 
-`sed 's/apple/banana/g'` finds all occurrences of the word `apple`, and replaces it with `banana`
+`sed 's/apple/banana/g'` finds all occurrences of the word `apple`, and replaces it with `banana`. The use of `g` means that **ALL** occurrences are replaced. `sed 's/apple/banana/'` would only replace the **first** occurrence.
+
+Use the `sed` search and replace, replace all occurrences of `women` with `zombies` in the file `little-women-no-footer-header.txt` and save it to the file `little-zombies.txt`:
 
 . . . 
 
@@ -280,39 +295,183 @@ cat little-women-no-footer-header.txt | sed 's/women/zombies/g' > little-zombies
 
 # `<` input redirection
 
-Some utilities (like `tr`) take a stream of text, not a file. In these cases, we use the input redirection (`<`) to send a stream into `tr`.
+So far we have been using the `>` output redirect to send the results, or output, of a command, or sequence of commands, to a file.  
 
-# `tr`
 
-`tr`ansliterate, or search and replace characters.
+Some utilities (like `tr`, which we will learn about next) take a stream of text, not a file. This means we need to send a stream of text to them as input using `<`. Using `tr some-file.txt` would fail. In these cases, we use the input redirection (`<`) to send a stream into `tr` like this: `tr < some-file.txt`. We can then save the output to `results.txt` using `tr < some-file.txt > results.txt`. 
+
+. . .
+
+In plain terms:
+
+`command file` passes a file to the command
+
+`command < file` passes the **contents** of the file to command
+
+
+# `tr`: translate
+
+**tr**anslate or delete characters.
 
 <br>
 
-`[:punct:]` Match all punctuation <br> `[:lower:]` Match all lowercase characters <br> `[:upper:]` Match all uppercase characters <br> `[:space:]` Match all spaces <br>
+First, let's use `tr` to translate (match and replace) characters:
+
+. . . 
+
+
+`tr '[:space:]' '_' < file.txt`<br>
+Convert every space to an underscore in `file.txt`
+
+<br>
+`tr '[:lower:]' '[:upper:]' < file.txt`<br>
+Convert all lowercase to uppercase in `file.txt`
+
+
+
+## Convert all text in `little-zombies.txt` to lowercase
+
+Using `tr` convert all text to lowercase in the file `little-zombies.txt`. Remember, tr needs a stream, not a file: `tr < file.txt`
 
 . . .
 
 <br>
+
 
 ```{.bash}
 tr '[:upper:]' '[:lower:]' < little-zombies.txt > little-zombies-lower.txt
 ```
 
+
+# `tr`
+
+**tr**anslate or delete characters.
+
+
+Now, we can use `tr` to delete characters using the `-d` flag:
+
+. . . 
+
+<br>
+`tr -d '[:space:]_' < file.txt`<br>
+Delete every space and underscore in `file.txt`
 <br>
 
-. . .
+<br>
+`tr '[:punct:]' < file.txt`<br>
+Delete all punctuation in `file.txt`
 
+## Remove all punctuation and new lines in  `little-zombies-lower.txt`
+
+<br>
+Use `tr -r` to remove all punctuation and carriage returns (new lines) in `little-zombies-lower.txt`.
+
+<br>
+Remember, we can match all punctuation with `[:punct:]` and we can match carriage returns (new line characters) with `\r`. 
+
+. . . 
+
+<br>
 ```{.bash}
 tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt 
 ```
 
+. . . 
+
+<br>
+Finally, we need to replace every space with a new line (`\n`) so that each word is on it's own line. This will make it possible to count words that are identical.
+
+```{.bash}
+ tr ' ' '\n' < little-zombies-clean.txt > little-zombies-words.txt
+```
+
+# `uniq` 
+
+**uniq**ue words
+
+Before we can return word-counts for our cleaned `little-zombies-words.txt` file, we need to learn one more command, `uniq`.
+
+If we have file, `cat-dog.txt` that looks like:
+
+```{.bash}
+cat
+dog
+cat
+dog
+```
+. . . 
+
+<br>
+and we ran `cat cat-dog.txt | uniq` we would get the results:
+
+```{.bash}
+cat
+dog
+cat
+dog
+```
+
+
+## Combining `uniq` and `sort`
+
+The reason we get
+
+```{.bash}
+cat
+dog
+cat
+dog
+```
+instead of 
+cat
+dog
+```{.bash}
+cat
+dog
+```
+is because `uniq` **only** works when repeated words are next to eachother, or sorted!
+
+. . .
+
+<br> 
+So by running `cat cat-dog.txt | sort | uniq` we get:
+
+```{.bash}
+cat
+dog
+```
+
+. . .
+
+<br>
+and we can add the `-c` flag to get the word count as well!
+`cat cat-dog.txt | sort | uniq -c` 
+
+```{.bash}
+      2 cat
+      2 dog
+```
+
+## Get the word-counts for `little-zombies-words.txt`
+
+Using the commands `sort` and `uniq` can you create a file named `zombies-word-count.txt` that has the word counts for each unique word in `little-zombies-words.txt` sorted by word count in descending order (most frequent word on top)?
+
+Give it a try before revealing the solution!
+
+
 . . .
 
 <br>
 
+::: {.callout-tip icon=false} 
+
+## Solution
+
 ```{.bash}
- tr ' ' '\n' < little-zombies-clean.txt | sort | uniq -c | sort -nr > little-zombie-word-count.txt
+cat little-zombies-words.txt | sort | uniq -c | sort -nr > zombies-word-count.txt
 ```
+:::
+
 
 # Back to `cut`
 
@@ -346,4 +505,5 @@ In particular, we will use the `tr` flag `tr -s` (squeeze), to collapse multiple
 `less`: View file page by page<br>
 `sed`: Stream editor - edit text line by line<br>
 `<`: Input redirect, send stream to stream utilities<br>
-`tr`: Transliterate, find and replace text in stream<br></small>
+`tr`: Transliterate, find and replace text in stream<br>
+`uniq`: Return unique words (no repeats), but only when adjacent<br></small>
