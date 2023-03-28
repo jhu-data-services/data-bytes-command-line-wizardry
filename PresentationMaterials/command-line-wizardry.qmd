@@ -280,6 +280,8 @@ Then confirm the word counts of all unique words used in the text.
 
 We have previously used `sed` (**s**tream **ed**itor), to delete a block of text. This is one of many `sed` functions. We can also use `sed` to search and replace text. For our 🧟 exercise, we are going to replace any occurrence of women with zombies.
 
+##  {#slide3-id data-menu-title="`sed` search and replace"}
+
 <br>
 
 `sed 's/apple/banana/g'` finds all occurrences of the word `apple`, and replaces it with `banana`. The use of `g` means that **ALL** occurrences are replaced. `sed 's/apple/banana/'` would only replace the **first** occurrence.
@@ -300,10 +302,13 @@ So far we have been using the `>` output redirect to send the results, or output
 
 Some utilities (like `tr`, which we will learn about next) take a stream of text, not a file. This means we need to send a stream of text to them as input using `<`. Using `tr some-file.txt` would fail. In these cases, we use the input redirection (`<`) to send a stream into `tr` like this: `tr < some-file.txt`. We can then save the output to `results.txt` using `tr < some-file.txt > results.txt`. 
 
-. . .
+##
 
+<br>
 In plain terms:
+<br>
 
+<br>
 `command file` passes a file to the command
 
 `command < file` passes the **contents** of the file to command
@@ -376,11 +381,13 @@ Remember, we can match all punctuation with `[:punct:]` and we can match carriag
 tr -d '[:punct:]\r' < little-zombies-lower.txt > little-zombies-clean.txt 
 ```
 
-. . . 
+## 
 
-<br>
 Finally, we need to replace every space with a new line (`\n`) so that each word is on it's own line. This will make it possible to count words that are identical.
 
+. . .
+
+<br>
 ```{.bash}
  tr ' ' '\n' < little-zombies-clean.txt > little-zombies-words.txt
 ```
@@ -399,7 +406,8 @@ dog
 cat
 dog
 ```
-. . . 
+
+##
 
 <br>
 and we ran `cat cat-dog.txt | uniq` we would get the results:
@@ -412,7 +420,7 @@ dog
 ```
 
 
-## Combining `uniq` and `sort`
+##
 
 The reason we get
 
@@ -431,9 +439,9 @@ dog
 ```
 is because `uniq` **only** works when repeated words are next to eachother, or sorted!
 
-. . .
 
-<br> 
+## 
+
 So by running `cat cat-dog.txt | sort | uniq` we get:
 
 ```{.bash}
@@ -459,7 +467,7 @@ Using the commands `sort` and `uniq` can you create a file named `zombies-word-c
 Give it a try before revealing the solution!
 
 
-. . .
+## 
 
 <br>
 
@@ -467,7 +475,6 @@ Give it a try before revealing the solution!
 
 ## Solution
 
-<br>
 ```{.bash}
 cat little-zombies-words.txt | sort | uniq -c | sort -nr > zombies-word-count.txt
 ```
