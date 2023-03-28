@@ -477,6 +477,7 @@ cat little-zombies-words.txt | sort | uniq -c | sort -nr > zombies-word-count.tx
 
 We can combine `tr` and `cut` to solve the problem of a variable number of spaces. 
 
+<br>
 In particular, we will use the `tr` flag `tr -s` (squeeze), to collapse multiple spaces down to one.
 
 . . .

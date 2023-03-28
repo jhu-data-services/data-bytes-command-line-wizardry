@@ -757,7 +757,7 @@ Pete Lawson, PhD
 <section id="back-to-cut" class="title-slide slide level1 center">
 <h1>Back to <code>cut</code></h1>
 <p>We can combine <code>tr</code> and <code>cut</code> to solve the problem of a variable number of spaces.</p>
-<p>In particular, we will use the <code>tr</code> flag <code>tr -s</code> (squeeze), to collapse multiple spaces down to one.</p>
+<p><br> In particular, we will use the <code>tr</code> flag <code>tr -s</code> (squeeze), to collapse multiple spaces down to one.</p>
 <div class="fragment">
 <p><br></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> lengths.txt <span class="fu">tr</span> <span class="at">-s</span> <span class="st">' '</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 6 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">" "</span> <span class="at">-f</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
