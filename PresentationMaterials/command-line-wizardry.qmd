@@ -467,6 +467,7 @@ Give it a try before revealing the solution!
 
 ## Solution
 
+<br>
 ```{.bash}
 cat little-zombies-words.txt | sort | uniq -c | sort -nr > zombies-word-count.txt
 ```
